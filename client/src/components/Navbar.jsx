@@ -30,7 +30,7 @@ const Navbar = () => {
             <a className="nav-link" href="#about" style={{fontFamily:'"Inter", sans-serif',fontOpticalSizing:"auto",fontWeight:"400",fontStyle:"normal"}}>
               About us
             </a>
-            <a className="nav-link" href="" style={{fontFamily:'"Inter", sans-serif',fontOpticalSizing:"auto",fontWeight:"400",fontStyle:"normal"}}>
+            <a className="nav-link" href="#events" style={{fontFamily:'"Inter", sans-serif',fontOpticalSizing:"auto",fontWeight:"400",fontStyle:"normal"}}>
               Recent Event
             </a>
             <a className="nav-link" href="#" style={{fontFamily:'"Inter", sans-serif',fontOpticalSizing:"auto",fontWeight:"400",fontStyle:"normal"}}>
