@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import useMediaQuery from "react-responsive";
 import { Typography } from "@mui/material";
 import image1 from "../assets/event_image1.png";
 import image2 from "../assets/event_image2.png";
 import image3 from "../assets/event_image3.png";
 
 function Recent() {
+  const isSmallWindow = useMediaQuery({ query: `(max-width: 767px)` });
+
   const navigate = useNavigate();
 
   function goToMenu() {
@@ -131,7 +134,7 @@ function Recent() {
       <div className="container py-5">
         <div className="text-center mx-auto py-5" style={{width:"75%"}}>
           <Typography
-            variant="h2"
+            variant="h4"
             component="div"
             sx={{ color: "#59A252", fontFamily: '"Average", serif' }}
           >

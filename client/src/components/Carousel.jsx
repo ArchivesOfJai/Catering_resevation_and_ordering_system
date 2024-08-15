@@ -14,13 +14,13 @@ const Carousel_image3 =
 function Carousel() {
   return (
     <div>
-      <div id="carouselExampleDark" class="carousel carousel-dark slide">
-        <div class="carousel-indicators">
+      <div id="carouselExampleDark" className="carousel carousel-dark slide">
+        <div className="carousel-indicators">
           <button
             type="button"
             data-bs-target="#carouselExampleDark"
             data-bs-slide-to="0"
-            class="active"
+            className="active"
             aria-current="true"
             aria-label="Slide 1"
           ></button>
@@ -37,34 +37,34 @@ function Carousel() {
             aria-label="Slide 3"
           ></button>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
-            <img src={Carousel_image1} class="d-block w-100" alt="..." />
+        <div className="carousel-inner">
+          <div className="carousel-item active" data-bs-interval="10000">
+            <img src={Carousel_image1} className="d-block w-100" alt="..." />
           </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src={Carousel_image2} class="d-block w-100" alt="..." />
+          <div className="carousel-item" data-bs-interval="2000">
+            <img src={Carousel_image2} className="d-block w-100" alt="..." />
           </div>
-          <div class="carousel-item">
-            <img src={Carousel_image3} class="d-block w-100" alt="..." />
+          <div className="carousel-item">
+            <img src={Carousel_image3} className="d-block w-100" alt="..." />
           </div>
         </div>
         <button
-          class="carousel-control-prev"
+          className="carousel-control-prev"
           type="button"
           data-bs-target="#carouselExampleDark"
           data-bs-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
         </button>
         <button
-          class="carousel-control-next"
+          className="carousel-control-next"
           type="button"
           data-bs-target="#carouselExampleDark"
           data-bs-slide="next"
         >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
         </button>
       </div>
     </div>

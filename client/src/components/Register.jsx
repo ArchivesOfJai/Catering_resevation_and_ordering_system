@@ -33,7 +33,7 @@ const Register = () => {
   };
 
   return (
-   <div className="container-fluid pt-5 mt-5">
+   <div className="container-fluid pt-5">
      <Box
       component="form"
       onSubmit={onSubmit}
@@ -43,10 +43,7 @@ const Register = () => {
         maxWidth: "400px",
         margin: "auto",
         gap: 2,
-        backgroundColor:"#F7F7F8",
-        padding:"15px",
-        borderRadius:"10px",
-        boxShadow:"0px 0px 15px 2px black, inset 0px 0px  5px grey"
+       
       }}
     >
       <Typography variant="h4" component="h1" align="center">

@@ -175,7 +175,7 @@ function AboutUs() {
             <div className="card" style={{width:"19rem",minHeight:'500px'}}>
               <img src={item1} className="card-img-top" alt="Turkish Cuisine" />
               <div className="card-body text-start">
-              <h4 class="card-title" style={{fontFamily:'"Inter", sans-serif'}}>Turkish Cuisine</h4>
+              <h4 className="card-title" style={{fontFamily:'"Inter", sans-serif'}}>Turkish Cuisine</h4>
                 <p className="card-text" style={{fontFamily:'"Inter", sans-serif',fontSize:"1rem"}}>
                 Turkish cuisine is a vibrant fusion of Central Asian, Middle Eastern, Mediterranean, and Balkan influences, featuring dishes like kebabs, mezes, and baklava. It emphasizes the use of fresh herbs, spices, and a variety of meats and vegetables.
                 </p>
@@ -184,7 +184,7 @@ function AboutUs() {
             <div className="card" style={{width:"19rem",minHeight:'500px'}}>
               <img src={item2} className="card-img-top" alt="Italian Cuisine" />
               <div className="card-body text-start">
-              <h4 class="card-title" style={{fontFamily:'"Inter", sans-serif'}}>Italian Cuisine</h4>
+              <h4 className="card-title" style={{fontFamily:'"Inter", sans-serif'}}>Italian Cuisine</h4>
                 <p className="card-text" style={{fontFamily:'"Inter", sans-serif',fontSize:"1rem"}}>
                 Italian cuisine is renowned for its emphasis on simplicity and high-quality ingredients, with iconic dishes such as pasta, pizza, and risotto. It highlights the use of fresh tomatoes, olive oil, cheese, and aromatic herbs.
                 </p>
@@ -193,7 +193,7 @@ function AboutUs() {
             <div className="card" style={{width:"19rem",minHeight:'500px'}}>
               <img src={item3} className="card-img-top" alt="Mixed Cuisine" />
               <div className="card-body text-start">
-              <h4 class="card-title" style={{fontFamily:'"Inter", sans-serif'}}>Mixed Cuisine</h4>
+              <h4 className="card-title" style={{fontFamily:'"Inter", sans-serif'}}>Mixed Cuisine</h4>
                 <p className="card-text" style={{fontFamily:'"Inter", sans-serif',fontSize:"1rem"}}>
                 Mixed cuisine, or fusion cuisine, creatively blends elements from different culinary traditions to craft unique and innovative dishes. It reflects the global nature of modern cooking, combining flavors and techniques from various cultures.
                 </p>
