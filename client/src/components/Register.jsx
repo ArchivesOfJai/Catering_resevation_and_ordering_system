@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { TextField, Button, MenuItem, Box, Typography } from '@mui/material';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { TextField, Button, MenuItem, Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    role: 'user',
+    name: "",
+    email: "",
+    password: "",
+    role: "user",
   });
 
   const navigate = useNavigate();
@@ -21,24 +24,29 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/register', formData);
+      const res = await axios.post('/api/auth/register', formData); // No need to include the base URL
       alert(res.data.message);
       navigate('/login');
     } catch (error) {
       alert(error.response.data.message);
-    }
+    }  
   };
 
   return (
-    <Box
+   <div className="container-fluid pt-5 mt-5">
+     <Box
       component="form"
       onSubmit={onSubmit}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        maxWidth: '400px',
-        margin: 'auto',
+        display: "flex",
+        flexDirection: "column",
+        maxWidth: "400px",
+        margin: "auto",
         gap: 2,
+        backgroundColor:"#F7F7F8",
+        padding:"15px",
+        borderRadius:"10px",
+        boxShadow:"0px 0px 15px 2px black, inset 0px 0px  5px grey"
       }}
     >
       <Typography variant="h4" component="h1" align="center">
@@ -88,7 +96,11 @@ const Register = () => {
       <Button type="submit" variant="contained" color="primary" fullWidth>
         Register
       </Button>
+      <Typography>
+        Already have an account? <Link to="/login">Login</Link>
+      </Typography>
     </Box>
+   </div>
   );
 };
 

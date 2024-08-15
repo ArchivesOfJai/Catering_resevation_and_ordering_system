@@ -3,10 +3,12 @@ import dotenv from 'dotenv';
 import connectDB from './db.js';
 import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
+import cors from 'cors';
 
 
 // Load environment variables
 dotenv.config();
+const PORT = process.env.PORT||3000;
 
 // Connect to the database
 connectDB();
@@ -14,6 +16,7 @@ connectDB();
 const app = express();
 
 
+app.use(cors());
 // Middleware to parse JSON requests
 app.use(express.json());
 
@@ -23,10 +26,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 
 // Example route
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
+// app.get('/', (req, res) => {
+//   res.send('API is running...');
+// });
 
-const PORT = process.env.PORT;
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
