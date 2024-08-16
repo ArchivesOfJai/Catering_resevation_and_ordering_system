@@ -1,34 +1,48 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import connectDB from './db.js';
-import authRoutes from './routes/authRoutes.js';
-import productRoutes from './routes/productRoutes.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import cors from 'cors';
 
+// Import routes
+import userRoutes from './routes/userRoutes.js';
+import productRoutes from './routes/productRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
-// Load environment variables
 dotenv.config();
-const PORT = process.env.PORT||3000;
 
-// Connect to the database
-connectDB();
+// Define __dirname in ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-
+// Middleware
 app.use(cors());
-// Middleware to parse JSON requests
-app.use(express.json());
+app.use(express.json()); // Parse JSON bodies
 
-// Use the auth routes
-app.use('/api/auth', authRoutes);
-// use product routes
+// Serve static files (for uploaded images)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Routes
+app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
-// Example route
-// app.get('/', (req, res) => {
-//   res.send('API is running...');
-// });
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log('Connected to MongoDB');
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+})
+.catch((err) => console.error(err));
 
-
-app.listen(PORT, console.log(`Server running on port ${PORT}`));
+// Fallback route for handling 404 errors
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});

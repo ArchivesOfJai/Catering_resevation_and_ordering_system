@@ -1,37 +1,19 @@
 import jwt from 'jsonwebtoken';
-import UserInfo from '../models/UserInfo.js';
+import User from '../models/User.js';
 
-// Middleware to protect routes (requires login)
-export const protect = async (req, res, next) => {
-  let token;
-
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    try {
-      token = req.headers.authorization.split(' ')[1];
-
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      req.user = await UserInfo.findById(decoded.id).select('-password');
-
-      next();
-    } catch (error) {
-      res.status(401).json({ message: 'Not authorized, token failed' });
+const authMiddleware = (role = '') => async (req, res, next) => {
+  try {
+    const token = req.header('Authorization').replace('Bearer ', '');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+    if (!user || (role && user.role !== role)) {
+      return res.status(403).json({ message: 'Access denied' });
     }
-  }
-
-  if (!token) {
-    res.status(401).json({ message: 'Not authorized, no token' });
-  }
-};
-
-// Middleware to check admin role
-export const admin = (req, res, next) => {
-  if (req.user && req.user.role === 'admin') {
+    req.user = user;
     next();
-  } else {
-    res.status(403).json({ message: 'Not authorized as an admin' });
+  } catch (error) {
+    res.status(401).json({ message: 'Unauthorized' });
   }
 };
+
+export default authMiddleware;
