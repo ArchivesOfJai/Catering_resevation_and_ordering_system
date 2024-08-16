@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-          return res.status(400).json({ message: 'User already registered' });
+          return res.json({ message: 'User already registered' });
         }
       const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = new User({

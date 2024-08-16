@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Grid } from '@mui/material';
+import { TextField, Button, Container, Typography, Grid, MenuItem } from '@mui/material';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const AdminRegister = () => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
+    address: '',
+    phoneNumber: '',
+    role: 'admin',
   });
 
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,27 +21,30 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/users/login', formData);
-      localStorage.setItem('isAuthenticated', true);
-      if (response.data.user.role === 'admin') {
-        localStorage.setItem('userRole', 'admin'); 
-        navigate('/admin'); // Redirect to admin dashboard
-      } else {
-        localStorage.setItem('userRole', 'user'); 
-        navigate('/user-dashboard'); // Redirect to user dashboard
-      }
+      const response = await axios.post('/api/users/register', formData);
+      setMessage(response.data.message);
     } catch (error) {
-      setMessage('Invalid email or password');
+      setMessage('Error registering user');
     }
   };
 
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" align="center" gutterBottom>
-        Login
+        Register
       </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -63,14 +68,34 @@ const Login = () => {
             />
           </Grid>
           <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Phone Number"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
+          <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" fullWidth>
-              Login
+              Register
             </Button>
           </Grid>
         </Grid>
       </form>
       {message && (
-        <Typography variant="body1" color="error" align="center" style={{ marginTop: '1rem' }}>
+        <Typography variant="body1" color="textSecondary" align="center" style={{ marginTop: '1rem' }}>
           {message}
         </Typography>
       )}
@@ -78,4 +103,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminRegister;

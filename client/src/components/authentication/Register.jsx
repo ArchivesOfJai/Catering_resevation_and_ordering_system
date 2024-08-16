@@ -9,7 +9,7 @@ const Register = () => {
     password: '',
     address: '',
     phoneNumber: '',
-    role: '',
+    role: 'user',
   });
 
   const [message, setMessage] = useState('');
@@ -86,20 +86,6 @@ const Register = () => {
               onChange={handleChange}
               required
             />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              select
-              fullWidth
-              label="Role"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              required
-            >
-              <MenuItem value="user">User</MenuItem>
-              <MenuItem value="admin">Admin</MenuItem>
-            </TextField>
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" fullWidth>

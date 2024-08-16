@@ -25,6 +25,7 @@ function Footer() {
                     <span><a href="#events" style={{textDecoration:"none"}}>Recent Events</a></span>
                     <span><a href="/menu" style={{textDecoration:"none"}}>Menu</a></span>
                     <span><a href="/privacy" style={{textDecoration:"none"}}>Privacy</a></span>
+                    <span><a href="/admin-register" style={{textDecoration:"none"}}>Register-as-admin</a></span>
                 </div>
 
                 <h6 className="mt-5" style={{color:'#ffffff'}}>&copy;{new Date().getFullYear()} Premier Plates</h6>
