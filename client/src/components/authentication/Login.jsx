@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Grid } from '@mui/material';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { TextField, Button, Container, Typography, Grid } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const isAuth = localStorage.getItem("isAuth");
+    if (isAuth) {
+      if (localStorage.getItem("userRole") === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/user-dashboard"); // Redirect to dashboard if logged in
+      }
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,17 +30,17 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/users/login', formData);
-      localStorage.setItem('isAuthenticated', true);
-      if (response.data.user.role === 'admin') {
-        localStorage.setItem('userRole', 'admin'); 
-        navigate('/admin'); // Redirect to admin dashboard
+      const response = await axios.post("/api/users/login", formData);
+      localStorage.setItem("isAuth", true);
+      if (response.data.user.role === "admin") {
+        localStorage.setItem("userRole", "admin");
+        navigate("/admin"); // Redirect to admin dashboard
       } else {
-        localStorage.setItem('userRole', 'user'); 
-        navigate('/user-dashboard'); // Redirect to user dashboard
+        localStorage.setItem("userRole", "user");
+        navigate("/user-dashboard"); // Redirect to user dashboard
       }
     } catch (error) {
-      setMessage('Invalid email or password');
+      setMessage("Invalid email or password");
     }
   };
 
@@ -70,7 +81,12 @@ const Login = () => {
         </Grid>
       </form>
       {message && (
-        <Typography variant="body1" color="error" align="center" style={{ marginTop: '1rem' }}>
+        <Typography
+          variant="body1"
+          color="error"
+          align="center"
+          style={{ marginTop: "1rem" }}
+        >
           {message}
         </Typography>
       )}

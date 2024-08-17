@@ -45,7 +45,6 @@ const AddProduct = () => {
         image: null,
       });
     } catch (error) {
-      console.error('Error adding product:', error);
       alert('Error adding product');
     }
   };
