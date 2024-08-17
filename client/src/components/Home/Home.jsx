@@ -4,6 +4,18 @@ import AboutUs from './AboutUs';
 import Recent from './Recent';
 import Footer from './Footer';
 function Home() {
+
+  useEffect(() => {
+    const isAuth = localStorage.getItem("isAuth");
+    if (isAuth) {
+      if (localStorage.getItem("userRole") === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/user-dashboard"); // Redirect to dashboard if logged in
+      }
+    }
+  }, [navigate]);
+
   return (
     <div>
         <Services/>

@@ -2,6 +2,14 @@ import express from 'express';
 import Product from '../models/Product.js';
 import upload from '../middleware/uploadMiddleware.js';
 import authMiddleware from '../middleware/authMiddleware.js';
+import path, { join } from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const router = express.Router();
 
@@ -43,5 +51,19 @@ router.delete('/:id', authMiddleware('admin'), async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.post('/image', (req, res) => {
+  const { filename } = req.body;
+  const rootdir=join(__dirname,"..");
+  const filePath = path.join(rootdir, filename);
+  // Send the image file
+  res.sendFile(filePath, (err) => {
+      if (err) {
+          console.error('File not found:', err);
+          res.status(404).send('File not found');
+      }
+  });
+});
+
 
 export default router;
