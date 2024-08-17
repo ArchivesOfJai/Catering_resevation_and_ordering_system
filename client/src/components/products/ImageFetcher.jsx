@@ -7,7 +7,6 @@ const ImageFetcher = ({ filename }) => {
 
   useEffect(() => {
     const fetchImage = async () => {
-        console.log(filename);
       try {
         const response = await axios.post('/api/products/image', { filename }, {
           responseType: 'blob',
@@ -26,7 +25,7 @@ const ImageFetcher = ({ filename }) => {
 
   return (
     <div>
-      {imageSrc ?  <Card.Img variant="top" src={imageSrc} alt={filename} /> : <p>Loading image...</p>}
+      {imageSrc ?  <Card.Img variant="top" src={imageSrc} alt={filename} style={{height:'200px'}} /> : <p>Loading image...</p>}
     </div>
   );
 };

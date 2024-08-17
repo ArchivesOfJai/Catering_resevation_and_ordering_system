@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { Container, Typography, TextField, Button, Grid, Paper, InputLabel, MenuItem, Select, FormControl } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
+
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState({
     name: '',
     description: '',
@@ -48,6 +52,15 @@ const AddProduct = () => {
       alert('Error adding product');
     }
   };
+
+
+  useEffect(() => {
+    const isAuth = localStorage.getItem("isAuth");
+    if (isAuth) {
+        navigate("/admin"); 
+    }
+  }, [navigate]);
+
 
   return (
     <Container>

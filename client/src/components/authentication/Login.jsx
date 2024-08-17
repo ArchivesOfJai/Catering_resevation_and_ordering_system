@@ -31,6 +31,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/users/login", formData);
+      localStorage.setItem('loginData',response.data);
       localStorage.setItem("isAuth", true);
       if (response.data.user.role === "admin") {
         localStorage.setItem("userRole", "admin");

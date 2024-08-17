@@ -25,11 +25,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/recents" element={<Recent />} />
-          <Route path="/add-product" element={<AddProduct />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/user-dashboard" element={<ProductList />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin" element={<AddProduct />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin-register" element={<AdminRegister />} />
           <Route path="/login" element={<Login />}/>
